@@ -2,41 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Lovable Countdown Design System - Soft, calming aesthetic with pastels */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Soft pastel background gradients */
+    --background: 35 100% 98%;
+    --background-secondary: 280 30% 96%;
+    --foreground: 220 15% 25%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Card elements with subtle warmth */
+    --card: 35 50% 97%;
+    --card-foreground: 220 15% 25%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 35 50% 97%;
+    --popover-foreground: 220 15% 25%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary: Soft lavender */
+    --primary: 260 30% 70%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 260 35% 65%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary: Sage green */
+    --secondary: 140 25% 75%;
+    --secondary-foreground: 220 15% 25%;
+    --secondary-hover: 140 30% 70%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted tones */
+    --muted: 280 20% 90%;
+    --muted-foreground: 220 10% 50%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent: Warm peach */
+    --accent: 25 85% 80%;
+    --accent-foreground: 220 15% 25%;
+    --accent-hover: 25 90% 75%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Timer display colors */
+    --timer-primary: 260 40% 60%;
+    --timer-secondary: 140 30% 65%;
+    --timer-glow: 260 50% 85%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Gentle warning/reset colors */
+    --destructive: 0 60% 75%;
+    --destructive-foreground: 0 0% 100%;
 
-    --radius: 0.5rem;
+    /* Soft borders and inputs */
+    --border: 280 25% 85%;
+    --input: 280 25% 92%;
+    --ring: 260 30% 70%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(35 100% 98%), hsl(280 30% 96%));
+    --gradient-card: linear-gradient(145deg, hsl(35 50% 97%), hsl(280 20% 95%));
+    --gradient-timer: linear-gradient(180deg, hsl(260 40% 60%), hsl(140 30% 65%));
+    --gradient-button: linear-gradient(135deg, hsl(260 30% 70%), hsl(260 35% 65%));
+
+    /* Shadows for depth */
+    --shadow-soft: 0 4px 20px -2px hsl(280 30% 80% / 0.3);
+    --shadow-timer: 0 8px 40px -4px hsl(260 40% 60% / 0.2);
+
+    /* Rounded corners */
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +126,58 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    background: var(--gradient-primary);
+    @apply text-foreground font-sans;
+    min-height: 100vh;
+  }
+}
+
+/* Custom animations for countdown numbers */
+@keyframes number-flip {
+  0% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes gentle-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes soft-glow {
+  0%, 100% {
+    box-shadow: var(--shadow-soft);
+  }
+  50% {
+    box-shadow: var(--shadow-timer);
+  }
+}
+
+/* Custom utility classes */
+@layer components {
+  .countdown-number {
+    @apply transition-all duration-300 ease-in-out;
+    animation: number-flip 0.6s ease-in-out;
+  }
+  
+  .gentle-pulse {
+    animation: gentle-pulse 2s ease-in-out infinite;
+  }
+  
+  .soft-glow {
+    animation: soft-glow 3s ease-in-out infinite;
   }
 }
