@@ -63,10 +63,10 @@ const CountdownDisplay: React.FC<CountdownDisplayProps> = ({
   const TimeDigit = ({ value, label }: { value: number; label: string }) => (
     <div className="flex flex-col items-center">
       <div className="relative">
-        <div className={`
+        <div className="
           countdown-number 
-          bg-gradient-timer 
-          text-white 
+          bg-primary 
+          text-primary-foreground 
           rounded-2xl 
           shadow-timer 
           flex 
@@ -77,8 +77,7 @@ const CountdownDisplay: React.FC<CountdownDisplayProps> = ({
           w-24 h-24 text-4xl
           md:w-32 md:h-32 md:text-6xl
           lg:w-40 lg:h-40 lg:text-7xl
-          ${isCompleted ? 'gentle-pulse' : ''}
-        `}>
+        ">
           {formatNumber(value)}
         </div>
       </div>
